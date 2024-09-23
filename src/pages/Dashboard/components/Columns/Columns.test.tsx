@@ -3,6 +3,7 @@ import Collumns from './index';
 import SingleColumn from '../SingleColumn';
 import { Status } from '~/utils/enums/status';
 import { RegistrationsByStatus } from '~/types/registration';
+import Container from '~/__mocks__/container';
 
 // Mock components
 jest.mock('../SingleColumn', () => ({
@@ -31,17 +32,17 @@ describe('Collumns', () => {
   });
 
   it('should render LoadingScreen when isLoading is true', () => {
-    render(<Collumns registrations={mockRegistrations} isLoading={true} />);
+    render(<Container><Collumns registrations={mockRegistrations} isLoading={true} /></Container>);
     expect(screen.getByText('Loading Screen')).toBeInTheDocument();
   });
 
   it('should render SingleColumn components when isLoading is false', () => {
-    render(<Collumns registrations={mockRegistrations} isLoading={false} />);
+    render(<Container><Collumns registrations={mockRegistrations} isLoading={false} /></Container>);
     expect(screen.getAllByText('Single Column')).toHaveLength(3);
   });
 
   it('should pass the correct props to SingleColumn', () => {
-    render(<Collumns registrations={mockRegistrations} isLoading={false} />);
+    render(<Container><Collumns registrations={mockRegistrations} isLoading={false} /></Container>);
 
     expect(SingleColumn).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -79,7 +80,7 @@ describe('Collumns', () => {
       REPROVED: []
     };
 
-    render(<Collumns registrations={emptyRegistrations} isLoading={false} />);
+    render(<Container><Collumns registrations={emptyRegistrations} isLoading={false} /></Container>);
 
     expect(SingleColumn).toHaveBeenCalledWith(
       expect.objectContaining({
