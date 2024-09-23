@@ -4,17 +4,14 @@ import NewUserPage from './index';
 import { useNewUser } from '~/hooks/Dashboard/useNewUser';
 import Container from '~/__mocks__/container';
 
-// Mock the custom hook
 jest.mock('~/hooks/Dashboard/useNewUser');
 
-// Mock the styled components
 jest.mock('./styles', () => ({
   Container: 'div',
   Card: 'div',
   IconButtonLarge: 'button',
 }));
 
-// Mock the react-icons
 jest.mock('react-icons/hi', () => ({
   HiOutlineArrowLeft: () => <span data-testid="mock-arrow-icon" />,
 }));

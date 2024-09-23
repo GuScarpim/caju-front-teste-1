@@ -20,6 +20,11 @@ export const IconAndText = styled.div`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.small};
+
+  h1 {
+    font-size: ${({ theme }) => theme.font.size.large};
+    margin: ${({ theme }) => theme.spacing.none};
+  }
 `;
 
 export const Actions = styled.div`

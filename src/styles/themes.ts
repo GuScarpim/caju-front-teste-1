@@ -10,7 +10,7 @@ const themeMain = {
     iceAlternative: '#FDF8E9',
     error: '#e80537',
     errorAlternative: '#ff919a',
-    alert: '#EFC24D',
+    alert: '#9C791D',
     alertAlternative: '#FF8858',
     secondary: '#4242DF',
     secondaryAlternative: '#EEEEFD',

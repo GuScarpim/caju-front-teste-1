@@ -43,7 +43,7 @@ const ModalDialog = ({ isOpen, onClose, onConfirm, title, message }: ModalProps)
         <S.ModalBody>{message}</S.ModalBody>
         <S.ModalFooter>
           <S.Button onClick={onClose} aria-label="Cancelar">Cancelar</S.Button>
-          <S.Button primary onClick={onConfirm} aria-label="Confirmar" data-testId='confirm-button'>Confirmar</S.Button>
+          <S.Button primary onClick={onConfirm} aria-label="Confirmar" data-testid='confirm-button'>Confirmar</S.Button>
         </S.ModalFooter>
       </S.ModalContainer>
     </S.ModalOverlay>

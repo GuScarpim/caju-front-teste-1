@@ -9,7 +9,7 @@ export const Button = styled.button`
   cursor: pointer;
   width: 100%;
   height: 56px;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.black};
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   font-size: ${({ theme }) => theme.font.weight.semiBold};
   font-weight: ${({ theme }) => theme.font.size.regular};
@@ -28,7 +28,7 @@ export const ButtonSmall = styled.button<{
   background-color: ${(props) => props.bgcolor ?? 'none'};
   color: ${(props) => props.color ?? "#000"};
   cursor: pointer;
-
+ 
   &:disabled {
     background-color: ${({ theme }) => theme.colors.grayLight};
     color: ${({ theme }) => theme.colors.gray};

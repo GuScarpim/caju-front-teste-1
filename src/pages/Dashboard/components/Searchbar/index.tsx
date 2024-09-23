@@ -25,7 +25,7 @@ export const SearchBar = () => {
         onChange={(e: { target: { value: string; }; }) => handleInputChange(e.target.value)}
       />
       <S.Actions>
-        <IconButton aria-label="refetch" data-testId="refetch" onClick={() => refreshRegistrations()}>
+        <IconButton aria-label="refetch" data-testid="refetch" onClick={() => refreshRegistrations()}>
           <HiRefresh />
         </IconButton>
         <Button onClick={() => goToNewAdmissionPage()}>Nova Admissão</Button>

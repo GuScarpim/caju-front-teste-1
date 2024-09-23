@@ -6,7 +6,9 @@ const spin = keyframes`
   100% { transform: rotate(360deg); }
 `;
 
-export const Container = styled.div<LoadingScreenProps>`
+export const Container = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['fullScreen'].includes(prop),
+}) <LoadingScreenProps>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,7 +20,9 @@ export const Container = styled.div<LoadingScreenProps>`
   background-color: ${({ theme, fullScreen }) => (fullScreen ? `${theme.colors.ice}` : 'transparent')};
 `;
 
-export const Spinner = styled.div<LoadingScreenProps>`
+export const Spinner = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['isLoadingHeight', 'isLoadingWidth'].includes(prop),
+}) <LoadingScreenProps>`
   border: 8px solid rgba(0, 0, 0, 0.1);
   border-left: ${({ theme }) => `8px solid ${theme.colors.primary}`};
   border-radius: ${({ theme }) => theme.border.radius.circle};

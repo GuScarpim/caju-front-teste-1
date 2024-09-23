@@ -37,7 +37,7 @@ const RegistrationCard = ({ ...registration }: Registration) => {
       <S.Card>
         <S.IconAndText>
           <HiOutlineUser />
-          <h3>{registration.employeeName}</h3>
+          <h1>{registration.employeeName}</h1>
         </S.IconAndText>
         <S.IconAndText>
           <HiOutlineMail />
@@ -93,7 +93,8 @@ const RegistrationCard = ({ ...registration }: Registration) => {
               handleOpenModal(() => onDelete(registration.id));
               messageModal.current = `Você gostaria de remover o usuário ${registration.employeeName}?`;
             }}
-            data-testId="trash-id"
+            aria-label="excluir"
+            data-testid="trash-id"
           >
             <HiOutlineTrash
               aria-hidden="false"

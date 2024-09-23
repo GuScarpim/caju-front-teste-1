@@ -23,15 +23,6 @@ type SingleColumnProps = {
   registrations: Registration[];
 };
 
-export interface Registration {
-  id: string;
-  admissionDate: string;
-  email: string;
-  employeeName: string;
-  cpf: string;
-  status: 'APPROVED';
-}
-
 const SingleColumn = ({ status, title, registrations }: SingleColumnProps) => (
   <S.Column status={status}>
     <ColumnTitle status={status} title={title} />
