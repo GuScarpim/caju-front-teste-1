@@ -49,3 +49,23 @@ export const TrashButton = styled.button`
   outline: none;
   border: none;
 `;
+
+export const ButtonSmall = styled.button<{
+  bgcolor?: string;
+  color?: string;
+}>`
+  font-size: ${({ theme }) => theme.font.size.small};
+  outline: none;
+  border-radius: ${({ theme }) => theme.border.radius.small};
+  border: none;
+  padding: ${({ theme }) => `${theme.spacing.xsmall} ${theme.spacing.regular}`};
+  background-color: ${(props) => props.bgcolor ?? 'none'};
+  color: ${(props) => props.color ?? "#000"};
+  cursor: pointer;
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.grayLight};
+    color: ${({ theme }) => theme.colors.gray};
+    cursor: not-allowed;
+  }
+`;

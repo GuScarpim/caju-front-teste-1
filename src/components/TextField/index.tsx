@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import * as S from './styles';
 
 type PropsTextField = React.InputHTMLAttributes<HTMLInputElement> & {
@@ -16,15 +17,16 @@ type PropsTextField = React.InputHTMLAttributes<HTMLInputElement> & {
   error?: string;
 };
 
-
-const TextField = ({ label, error, id, ...rest }: PropsTextField) => {
-  return (
-    <S.Content>
-      {label && <S.Label htmlFor={id}>{label}</S.Label>}
-      <S.Input id={id} {...rest} />
-      {error && <S.ErrorText>{error}</S.ErrorText>}
-    </S.Content>
-  );
-};
+const TextField = forwardRef<HTMLInputElement, PropsTextField>(
+  ({ label, error, id, ...rest }, ref) => {
+    return (
+      <S.Content>
+        {label && <S.Label htmlFor={id}>{label}</S.Label>}
+        <S.Input id={id} ref={ref} {...rest} />
+        {error && <S.ErrorText>{error}</S.ErrorText>}
+      </S.Content>
+    );
+  }
+);
 
 export default TextField;

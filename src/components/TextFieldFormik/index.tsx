@@ -1,6 +1,7 @@
 import { Field, ErrorMessage } from "formik";
 import { Select, Content } from './styles';
 import * as S from '../TextField/styles';
+import { forwardRef } from 'react';
 
 type Option = {
   /**
@@ -65,35 +66,38 @@ export type PropsTextFieldFormik = {
 };
 
 
-const TextFieldFormik = ({ name, label, type = "text", options, value, placeholder, onChange }: PropsTextFieldFormik) => {
-  return (
-    <Content>
-      {label && <S.Label htmlFor={name}>{label}</S.Label>}
-      {options ? (
-        <Field type={type} name={name} as={Select}>
-          {options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </Field>
-      ) : (
-        <Field name={name}>
-          {({ field }: { field: { value: string; onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; }; }) => (
-            <S.Input
-              {...field}
-              placeholder={placeholder}
-              id={name}
-              type={type}
-              value={value || field.value}
-              onChange={onChange || field.onChange}
-            />
-          )}
-        </Field>
-      )}
-      <ErrorMessage name={name} component={S.ErrorText} />
-    </Content>
-  );
-};
+const TextFieldFormik = forwardRef<HTMLInputElement | HTMLSelectElement, PropsTextFieldFormik>(
+  ({ name, label, type = 'text', options, value, placeholder, onChange }, ref) => {
+    return (
+      <Content>
+        {label && <S.Label htmlFor={name}>{label}</S.Label>}
+        {options ? (
+          <Field type={type} name={name} as={Select} innerRef={ref}>
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </Field>
+        ) : (
+          <Field name={name}>
+            {({ field }: { field: { value: string; onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; }; }) => (
+              <S.Input
+                {...field}
+                ref={ref as React.Ref<HTMLInputElement>}
+                placeholder={placeholder}
+                id={name}
+                type={type}
+                value={value || field.value}
+                onChange={onChange || field.onChange}
+              />
+            )}
+          </Field>
+        )}
+        <ErrorMessage name={name} component={S.ErrorText} />
+      </Content>
+    );
+  }
+);
 
 export default TextFieldFormik;

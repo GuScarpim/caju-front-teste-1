@@ -1,7 +1,5 @@
 import { useRef, useState } from 'react';
 import { Registration } from '~/types/registration';
-import { ButtonSmall } from "../../../../components/Button/styles";
-import * as S from "./styles";
 import {
   HiOutlineMail,
   HiOutlineUser,
@@ -12,6 +10,7 @@ import { useRegistration } from '~/hooks/Dashboard/useRegistration';
 import { Status } from '~/utils/enums/status';
 import ModalDialog from '~/components/ModalDialog';
 import { themeMain } from '~/styles/themes';
+import * as S from "./styles";
 
 const RegistrationCard = ({ ...registration }: Registration) => {
   const { onRegistration, onDelete } = useRegistration();
@@ -51,7 +50,7 @@ const RegistrationCard = ({ ...registration }: Registration) => {
           <S.GapActions>
             {registration.status === 'REVIEW' && (
               <>
-                <ButtonSmall
+                <S.ButtonSmall
                   aria-label="Reprovar"
                   bgcolor={themeMain.colors.errorAlternative}
                   onClick={() => {
@@ -60,9 +59,9 @@ const RegistrationCard = ({ ...registration }: Registration) => {
                   }}
                 >
                   Reprovar
-                </ButtonSmall>
+                </S.ButtonSmall>
 
-                <ButtonSmall
+                <S.ButtonSmall
                   aria-label="Aprovar"
                   bgcolor={themeMain.colors.primaryAlternative}
                   onClick={() => {
@@ -71,12 +70,12 @@ const RegistrationCard = ({ ...registration }: Registration) => {
                   }}
                 >
                   Aprovar
-                </ButtonSmall>
+                </S.ButtonSmall>
               </>
             )}
 
             {(registration.status === APPROVED || registration.status === REPROVED) && (
-              <ButtonSmall
+              <S.ButtonSmall
                 aria-label="Revisar novamente"
                 bgcolor={themeMain.colors.alertAlternative}
                 onClick={() => {
@@ -85,7 +84,7 @@ const RegistrationCard = ({ ...registration }: Registration) => {
                 }}
               >
                 Revisar novamente
-              </ButtonSmall>
+              </S.ButtonSmall>
             )}
           </S.GapActions >
           <S.TrashButton
