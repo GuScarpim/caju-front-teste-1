@@ -1,4 +1,3 @@
-// src/hooks/useNewUser.test.tsx
 import { render, screen, act, waitFor } from '@testing-library/react';
 import { showErrorToast, showSuccessToast } from '~/utils/toastConfig';
 import { Registration } from '~/types/registration';
@@ -36,12 +35,11 @@ describe('useNewUser', () => {
 
     const TestComponent = () => {
       const { isLoading, handleCreateUser } = useNewUser();
-      const resetForm = jest.fn();
 
       return (
         <div>
           <button
-            onClick={() => handleCreateUser(mockRegistration, resetForm)}
+            onClick={() => handleCreateUser(mockRegistration)}
           >
             Create User
           </button>
@@ -52,14 +50,11 @@ describe('useNewUser', () => {
 
     render(<TestComponent />);
 
-    // Trigger user creation
     await act(async () => {
       screen.getByText('Create User').click();
 
-      // Verifique se o createRegistration foi chamado
       expect(createRegistration).toHaveBeenCalledTimes(1);
 
-      // Verifique se o showSuccessToast será chamado depois
       await waitFor(() => {
         expect(showSuccessToast).toHaveBeenCalledWith('Usuário cadastrado com sucesso!');
       });
@@ -70,7 +65,6 @@ describe('useNewUser', () => {
         cpf: removeMaskCPF(mockRegistration.cpf)
       });
 
-      // Certifique-se de que o carregamento foi oculto
       expect(screen.queryByTestId('loading')).toBeNull();
     });
   });
@@ -80,12 +74,11 @@ describe('useNewUser', () => {
 
     const TestComponent = () => {
       const { isLoading, handleCreateUser } = useNewUser();
-      const resetForm = jest.fn();
 
       return (
         <div>
           <button
-            onClick={() => handleCreateUser(mockRegistration, resetForm)}
+            onClick={() => handleCreateUser(mockRegistration)}
           >
             Create User
           </button>
@@ -96,27 +89,25 @@ describe('useNewUser', () => {
 
     render(<TestComponent />);
 
-    // Trigger user creation
     await act(async () => {
       screen.getByText('Create User').click();
       await waitFor(() => {
         expect(showErrorToast).toHaveBeenCalledWith('Erro ao criar registro');
-        expect(screen.queryByTestId('loading')).toBeNull(); // Ensure loading is gone
+        expect(screen.queryByTestId('loading')).toBeNull();
       });
     });
   });
 
   it('should show loading state while creating user', async () => {
-    (createRegistration as jest.Mock).mockReturnValue(new Promise(() => { })); // Mocking a pending promise
+    (createRegistration as jest.Mock).mockReturnValue(new Promise(() => { }));
 
     const TestComponent = () => {
       const { isLoading, handleCreateUser } = useNewUser();
-      const resetForm = jest.fn();
 
       return (
         <div>
           <button
-            onClick={() => handleCreateUser(mockRegistration, resetForm)}
+            onClick={() => handleCreateUser(mockRegistration)}
           >
             Create User
           </button>
@@ -127,12 +118,10 @@ describe('useNewUser', () => {
 
     render(<TestComponent />);
 
-    // Trigger user creation
     act(() => {
       screen.getByText('Create User').click();
     });
 
-    // Ensure loading is displayed
     expect(screen.getByTestId('loading')).toBeInTheDocument();
   });
 });

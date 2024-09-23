@@ -2,7 +2,6 @@ import { render, screen, waitFor } from '@testing-library/react';
 import DashboardPage from './index';
 import { useDashboard } from '../../hooks/Dashboard/useDashboard';
 
-// Mocking the components and hook
 jest.mock('./components/Searchbar', () => ({ SearchBar: () => <div>SearchBar</div> }));
 jest.mock('./components/Columns', () => ({ default: ({ registrations, isLoading }: any) => <div>Columns: {registrations.length}, Loading: {isLoading.toString()}</div> }));
 jest.mock('../../hooks/Dashboard/useDashboard');

@@ -1,11 +1,10 @@
-// src/hooks/useDashboard.test.tsx
 import { render, waitFor, screen, fireEvent } from '@testing-library/react';
 import { useDashboard } from '../useDashboard';
 import { getRegistrations } from '../../../services/registrationService';
 import { showErrorToast } from '~/utils/toastConfig';
 import { act } from 'react-dom/test-utils';
 import { Registration } from '../../../types/registration';
-import { DashboardProvider } from '../../../context/dashboardContext'; // Certifique-se de que o caminho esteja correto
+import { DashboardProvider } from '../../../context/dashboardContext';
 
 jest.mock('../../../services/registrationService');
 jest.mock('~/utils/toastConfig', () => ({

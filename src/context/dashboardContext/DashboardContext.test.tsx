@@ -1,4 +1,3 @@
-// src/contexts/DashboardContext.test.tsx
 import { render, screen, fireEvent } from '@testing-library/react';
 import { DashboardProvider, DashboardContext } from './index';
 import { useContext } from 'react';

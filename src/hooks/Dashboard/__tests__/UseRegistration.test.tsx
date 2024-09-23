@@ -1,10 +1,8 @@
-// src/hooks/useRegistration.test.tsx
 import { render, screen, act, waitFor } from '@testing-library/react';
 import { useRegistration } from '../useRegistration';
 import { updateRegistration, deleteRegistration } from '~/services/registrationService';
-import { showErrorToast, showSuccessToast } from '~/utils/toastConfig';
+import { showErrorToast } from '~/utils/toastConfig';
 import { DashboardContext } from '~/context/dashboardContext';
-import { removeMaskCPF } from '~/utils/maskUtils';
 import { Registration, } from '~/types/registration';
 import { useDashboard } from '../useDashboard';
 
@@ -14,7 +12,7 @@ jest.mock('~/utils/toastConfig', () => ({
   showSuccessToast: jest.fn()
 }));
 jest.mock('~/utils/maskUtils', () => ({
-  removeMaskCPF: jest.fn((data) => data) // Mock removing CPF mask as identity function
+  removeMaskCPF: jest.fn((data) => data)
 }));
 jest.mock('../useDashboard', () => ({
   useDashboard: jest.fn(() => ({
@@ -40,7 +38,7 @@ describe('useRegistration', () => {
 
   it('should handle update registration error', async () => {
     (updateRegistration as jest.Mock).mockRejectedValue(new Error('Update error'));
-    const { fetchRegistrations } = useDashboard() as any; // Mock the hook
+    const { fetchRegistrations } = useDashboard() as any;
     (fetchRegistrations as jest.Mock).mockResolvedValue({});
 
     const TestComponent = () => {
@@ -71,7 +69,7 @@ describe('useRegistration', () => {
 
   it('should handle delete registration error', async () => {
     (deleteRegistration as jest.Mock).mockRejectedValue(new Error('Delete error'));
-    const { fetchRegistrations } = useDashboard() as any; // Mock the hook
+    const { fetchRegistrations } = useDashboard() as any;
     (fetchRegistrations as jest.Mock).mockResolvedValue({});
 
     const TestComponent = () => {
