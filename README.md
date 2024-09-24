@@ -59,3 +59,6 @@ Caso queira executar a suíte de testes, utilize o comando abaixo:
 ```bash
 yarn test:dev
 ```
+Testes com minimo de 85% de cobertura:
+
+<img src="https://guscarpim.sirv.com/Images/Caju/Captura%20de%20tela%202024-09-23%20220905.png" width="910" height="411" alt="Testes">
