@@ -1,4 +1,4 @@
-import { Field, ErrorMessage } from "formik";
+import { Field, ErrorMessage, useField } from "formik";
 import { Select, Content } from './styles';
 import * as S from '../TextField/styles';
 import { forwardRef } from 'react';
@@ -68,11 +68,19 @@ export type PropsTextFieldFormik = {
 
 const TextFieldFormik = forwardRef<HTMLInputElement | HTMLSelectElement, PropsTextFieldFormik>(
   ({ name, label, type = 'text', options, value, placeholder, onChange }, ref) => {
+    const [field, meta] = useField(name);
+    const hasError = !!meta.error && meta.touched;
     return (
       <Content>
         {label && <S.Label htmlFor={name}>{label}</S.Label>}
         {options ? (
-          <Field type={type} name={name} as={Select} innerRef={ref}>
+          <Field
+            as={Select}
+            {...field}
+            id={name}
+            ref={ref as React.Ref<HTMLSelectElement>}
+            aria-invalid={hasError ? 'true' : 'false'}
+          >
             {options.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -80,19 +88,16 @@ const TextFieldFormik = forwardRef<HTMLInputElement | HTMLSelectElement, PropsTe
             ))}
           </Field>
         ) : (
-          <Field name={name}>
-            {({ field }: { field: { value: string; onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; }; }) => (
-              <S.Input
-                {...field}
-                ref={ref as React.Ref<HTMLInputElement>}
-                placeholder={placeholder}
-                id={name}
-                type={type}
-                value={value || field.value}
-                onChange={onChange || field.onChange}
-              />
-            )}
-          </Field>
+          <S.Input
+            {...field}
+            ref={ref as React.Ref<HTMLInputElement>}
+            placeholder={placeholder}
+            id={name}
+            type={type}
+            value={value || field.value}
+            onChange={onChange || field.onChange}
+            aria-invalid={hasError ? 'true' : 'false'}
+          />
         )}
         <ErrorMessage name={name} component={S.ErrorText} />
       </Content>

@@ -1,9 +1,9 @@
 import { defineConfig, loadEnv } from "vite";
+import viteCompression from 'vite-plugin-compression';
 import react from "@vitejs/plugin-react";
 import path from "path";
 import eslintPlugin from "@nabla/vite-plugin-eslint";
 
-// https://vitejs.dev/config/
 export default defineConfig((props) => {
   const env = loadEnv(props.mode, process.cwd(), "VITE_DEV");
   const envWithProcessPrefix = {
@@ -11,7 +11,13 @@ export default defineConfig((props) => {
   };
 
   return {
-    plugins: [react(), eslintPlugin()],
+    plugins: [viteCompression({
+      verbose: true,
+      disable: false,
+      threshold: 10240,
+      algorithm: 'gzip',
+      ext: '.gz',
+    }), react(), eslintPlugin()],
     server: {
       port: 3001,
     },
@@ -22,6 +28,7 @@ export default defineConfig((props) => {
     },
     define: envWithProcessPrefix,
     build: {
+      brotli: true,
       outDir: 'dist',
     }
   }

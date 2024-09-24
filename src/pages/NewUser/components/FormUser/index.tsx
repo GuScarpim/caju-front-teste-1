@@ -37,6 +37,8 @@ const FormUser = ({ onSubmit, isLoading }: FormUserProps) => {
             aria-label="Nome"
             label="Nome"
             placeholder="Digite o nome completo"
+            value={values.employeeName}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFieldValue('employeeName', e.target.value)}
           />
           <TextFieldFormik
             name="email"
@@ -44,6 +46,8 @@ const FormUser = ({ onSubmit, isLoading }: FormUserProps) => {
             label="Email"
             type="email"
             placeholder="Digite o email"
+            value={values.email}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFieldValue('email', e.target.value)}
           />
 
           <TextFieldFormik
@@ -63,6 +67,8 @@ const FormUser = ({ onSubmit, isLoading }: FormUserProps) => {
             aria-label="Data de admissão"
             label="Data de admissão"
             type="date"
+            value={values.admissionDate}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFieldValue('admissionDate', e.target.value)}
           />
 
           <TextFieldFormik
@@ -70,12 +76,12 @@ const FormUser = ({ onSubmit, isLoading }: FormUserProps) => {
             aria-label="Status"
             label="Status"
             options={[
-              { value: '', label: 'Selecione um status' },
               { value: APPROVED, label: 'Aprovado' },
               { value: REVIEW, label: 'Revisar' },
               { value: REPROVED, label: 'Reprovado' }
             ]}
-            placeholder="Selecione um status"
+            value={values.status}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFieldValue('status', e.target.value)}
           />
 
           <Button type="submit" disabled={isLoading} isLoading={isLoading} data-testid="submit-button">Cadastrar</Button>
