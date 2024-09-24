@@ -73,17 +73,4 @@ describe('FormUser Validations', () => {
 
     expect(screen.getByText('CPF inválido')).toBeInTheDocument();
   });
-
-  // it('should display invalid status error when an invalid status is selected', async () => {
-  //   render(<Container><FormUser onSubmit={mockOnSubmit} isLoading={false} /></Container>);
-
-    // const statusInput = screen.getByText('Status');
-    // fireEvent.change(statusInput, { target: { value: 'invalid-status' } });
-
-  //   await act(async () => {
-  //     fireEvent.click(screen.getByTestId('submit-button'));
-  //   });
-
-  //   expect(screen.getByText('Status inválido')).toBeInTheDocument();
-  // });
 });

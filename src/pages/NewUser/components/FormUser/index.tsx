@@ -76,6 +76,7 @@ const FormUser = ({ onSubmit, isLoading }: FormUserProps) => {
             aria-label="Status"
             label="Status"
             options={[
+              { value: '', label: 'Selecione um status' },
               { value: APPROVED, label: 'Aprovado' },
               { value: REVIEW, label: 'Revisar' },
               { value: REPROVED, label: 'Reprovado' }
