@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 24px;
+  padding: ${({ theme }) => theme.spacing.xlarge};
   display: flex;
   flex-direction: column;
+  overflow: auto;
 `;
 
 

@@ -1,38 +1,32 @@
-import React, { InputHTMLAttributes } from "react";
-import styled from "styled-components";
+import { forwardRef } from 'react';
+import * as S from './styles';
 
-export const Input = styled.input`
-  padding: 0 8px;
-  vertical-align: middle;
-  border-radius: 2px;
-  width: 100%;
-  min-height: 36px;
-  background-color: #ffffff;
-  border: 1px solid rgba(36, 28, 21, 0.3);
-  transition: all 0.2s ease-in-out 0s;
-  font-size: 16px;
-  line-height: 18px;
-  font-weight: normal;
-  border-radius:8px;
-  :focus {
-    outline: none;
-    border: 1px solid #007c89;
-    box-shadow: inset 0 0 0 1px #007c89;
-  }
-`;
-type Props = {
+type PropsTextField = React.InputHTMLAttributes<HTMLInputElement> & {
+  /**
+   * Defines the label for the text field.
+   *
+   * @optional
+   */
   label?: string;
-  error?: string;
-} & InputHTMLAttributes<any>;
 
-const TextField = (props: Props) => {
-  return (
-    <div>
-      <label htmlFor={props.id}>{props.label}</label>
-      <Input {...props} />
-      <span style={{fontSize: 12, color: 'red'}}>{props.error}</span>
-    </div>
-  );
+  /**
+   * Provides an error message to display when the text field has an error.
+   *
+   * @optional
+   */
+  error?: string;
 };
+
+const TextField = forwardRef<HTMLInputElement, PropsTextField>(
+  ({ label, error, id, ...rest }, ref) => {
+    return (
+      <S.Content>
+        {label && <S.Label htmlFor={id}>{label}</S.Label>}
+        <S.Input id={id} ref={ref} {...rest} />
+        {error && <S.ErrorText>{error}</S.ErrorText>}
+      </S.Content>
+    );
+  }
+);
 
 export default TextField;
